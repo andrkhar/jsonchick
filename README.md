@@ -10,11 +10,12 @@ Get paths to a value in JSON data.
 from jsonchick import jsonchick
 
 
-data = [{'k1': 'v1'}, [{'k2': ['v1']]]
+data = [{'k1': 'v1'}, [{'k2': ['v1']}]]
 value = 'v1'
 
-assert (('k1',), ('k2', 0)) == jsonchick.find(value, data)
-assert [['k1'], ['k2', 0]] == jsonchick.find(value, data, mutable=True)
+assert ((0, 'k1'), (1, 0, 'k2', 0)) == jsonchick.get_tuples(value, data)
+assert [[0, 'k1'], [1, 0, 'k2', 0]] == jsonchick.get_lists(value, data)
+assert ['[0]["k1"]', '[1][0]["k2"][0]'] == jsonchick.get_strings(value, data)
 ```
 
 ## Credits

@@ -20,3 +20,23 @@ def find(element, JSON, path=None, all_paths=None, mutable=False):
         all_paths = tuple(all_paths)
     return all_paths 
 
+
+def get_tuples(value, data):
+    """Get paths to a value as a tuple of tuples."""
+    return find(value,data)
+
+
+def get_lists(value, data):
+    """Get paths to a value as a list of lists."""
+    return find(value, data, mutable=True)
+
+
+def get_strings(value, data):
+    """Get paths to a value as a list of strings."""
+    paths = get_lists(value, data)
+    strings = []
+    for path in paths:
+        string = ''.join([f'["{item}"]' if isinstance(item, str) else f'[{str(item)}]' for item in path])
+        strings.append(string)
+    return strings
+
