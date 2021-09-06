@@ -5,7 +5,8 @@ Get paths to a value in JSON data.
 `pip install jsonchick`
 
 ## Use
-`
+
+```
 from jsonchick import jsonchick
 
 
@@ -14,8 +15,7 @@ value = 'v1'
 
 assert (('k1',), ('k2', 0)) == jsonchick.find(value, data)
 assert [['k1'], ['k2', 0]] == jsonchick.find(value, data, mutable=True)
-
-`
+```
 
 ## Credits
 The lib is a modified version of a Stackoverflow answer on the question:
